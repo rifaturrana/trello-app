@@ -51,24 +51,27 @@ const TaskCard = ({ task, index }) => {
     console.log(task.listId, selectedListId);
     console.log(task.boardId, selectedBoardId);
     if (task.listId === selectedListId && task.boardId === selectedBoardId) {
-      if (
-        lists.find((list) => list.id === selectedListId).tasks.includes(task.id)
-      ) {
-        alert("Task Already exist");
-      }
+      alert("You can't copy a task to the same list");
     } else {
+      const newTask = {
+        id: Date.now() + "",
+        title: task.title,
+        boardId: selectedBoardId,
+        listId: selectedListId,
+      };
+      dispatchTaskAction({ type: "CREATE_TASK", payload: newTask });
       dispatchBoardAction({
         type: "ADD_TASK_ID_TO_A_BOARD",
         payload: {
           id: selectedBoardId,
-          taskId: task.id,
+          taskId: newTask.id,
         },
       });
       dispatchListAction({
         type: "ADD_TASK_ID_TO_A_LIST",
         payload: {
           id: selectedListId,
-          taskId: task.id,
+          taskId: newTask.id,
         },
       });
     }
