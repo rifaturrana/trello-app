@@ -52,7 +52,7 @@ const BoardDetails = () => {
     if (source.droppableId !== destination.droppableId) {
       dispatchTaskAction({
         type: "CHANGE_LIST_ID_OF_A_TASK",
-        payload: { id: draggableId, listId: destination.draggableId },
+        payload: { id: draggableId, listId: destination.droppableId },
       });
     }
     dispatchListAction({
