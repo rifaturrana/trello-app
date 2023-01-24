@@ -78,8 +78,7 @@ const TaskCard = ({ task, index }) => {
   };
   const moveHandler = (e) => {
     e.preventDefault();
-    console.log(selectedBoardId);
-    console.log(selectedListId);
+
     if (task.listId === selectedListId && task.boardId === selectedBoardId) {
       if (
         lists.find((list) => list.id === selectedListId).tasks.includes(task.id)
@@ -234,11 +233,14 @@ const TaskCard = ({ task, index }) => {
                                 }
                               >
                                 <option value="">Select Board</option>
-                                {boards.map((board) => (
-                                  <option key={board.id} value={board.id}>
-                                    {board.title}
-                                  </option>
-                                ))}
+                                {boards.map(
+                                  (board) =>
+                                    board.lists.length > 0 && (
+                                      <option key={board.id} value={board.id}>
+                                        {board.title}
+                                      </option>
+                                    )
+                                )}
                               </select>
                               <select
                                 name=""
@@ -248,6 +250,7 @@ const TaskCard = ({ task, index }) => {
                                 }
                               >
                                 <option value="">Select List</option>
+
                                 {lists
                                   .filter(
                                     (list) => list.boardId === selectedBoardId
