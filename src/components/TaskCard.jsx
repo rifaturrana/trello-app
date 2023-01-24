@@ -50,6 +50,9 @@ const TaskCard = ({ task, index }) => {
     e.preventDefault();
     console.log(task.listId, selectedListId);
     console.log(task.boardId, selectedBoardId);
+    if (!selectedBoardId || !selectedListId) {
+      alert("Please select a board and list");
+    }
     if (task.listId === selectedListId && task.boardId === selectedBoardId) {
       alert("You can't copy a task to the same list");
     } else {
@@ -78,7 +81,10 @@ const TaskCard = ({ task, index }) => {
   };
   const moveHandler = (e) => {
     e.preventDefault();
-
+    if (!selectedBoardId || !selectedListId) {
+      alert("Please select a board and list");
+      return;
+    }
     if (task.listId === selectedListId && task.boardId === selectedBoardId) {
       if (
         lists.find((list) => list.id === selectedListId).tasks.includes(task.id)

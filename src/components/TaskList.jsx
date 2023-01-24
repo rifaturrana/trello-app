@@ -75,10 +75,10 @@ const TaskList = ({ taskList, index }) => {
     e.preventDefault();
     let taskIds = taskList.tasks.map((item) => item);
     if (!selectedBoardId) {
-      return alert("Please select a board and a list to move the list");
+      return alert("Please select a board  to move the list");
     }
     if (selectedBoardId === taskList.boardId) {
-      return alert("You can't move the list to the same board and list");
+      return alert("You can't move the list to the same board ");
     } else if (taskList.boardId !== selectedBoardId) {
       dispatchBoardAction({
         type: "REMOVE_LIST_ID_FROM_BOARD",
